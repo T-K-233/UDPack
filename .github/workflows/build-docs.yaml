@@ -48,7 +48,7 @@ jobs:
     - name: Commit Docs
       uses: stefanzweifel/git-auto-commit-action@v5
       with:
-        commit_message: "ADD: build new docs"
+        commit_message: "ci: build new docs"
     - name: Setup Pages
       uses: actions/configure-pages@v4
     - name: Upload artifact
