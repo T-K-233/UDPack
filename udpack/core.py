@@ -8,23 +8,24 @@ class UDP:
     """
     UDP class for sending and receiving data from a UDP socket as a full duplex communcation channel.
     """
-    def __init__(self, recv_addr=("127.0.0.1", 8000), send_addr=("127.0.0.1", 8001)):
+
+    def __init__(self, recv_addr=None, send_addr=None):
         """
         Initialize UDP Tx and Rx
-        
+
         Args:
             recv_addr: address to listen on, None if not receiving (tx only)
             send_addr: address of target host, None if not sending (rx only)
         """
         self.recv_addr = recv_addr
         self.send_addr = send_addr
-        
+
         self._sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        
+
         if self.recv_addr:
             self._sock.bind(self.recv_addr)
             print("UDP Rx is initialized:", self.recv_addr)
-        
+
         if self.send_addr:
             print("UDP Tx is initialized:", self.send_addr)
 
@@ -58,7 +59,7 @@ class UDP:
     def send(self, buffer: bytes) -> None:
         """
         Send a byte buffer to the target device.
-        
+
         Args:
             buffer: data to send
         """
@@ -82,11 +83,11 @@ class UDP:
         serialized_data = buffer.decode("utf-8")
         data = json.loads(serialized_data)
         return data
-    
+
     def send_dict(self, data: dict) -> None:
         """
         Serialize a python dictionary and send it.
-        
+
         Args:
             data: data to send
         """
@@ -97,9 +98,9 @@ class UDP:
     def recv_numpy(self, bufsize=1024, dtype=np.float32, timeout=None) -> np.ndarray:
         """
         Receive data and deserialize it into a numpy array.
-        
+
         See `recv()` for more information on timeout.
-        
+
         Args:
             bufsize: size of data buffer to receive
             dtype: numpy data type
@@ -114,7 +115,7 @@ class UDP:
     def send_numpy(self, data: np.ndarray) -> None:
         """
         Serialize a numpy array and send it.
-        
+
         Args:
             data: data to send
         """
