@@ -44,7 +44,7 @@ jobs:
         pip install .
     - name: Generate Docs
       run: |
-        pdoc --docformat google -o ./docs cc.udp
+        pdoc --docformat google -o ./docs udpack
     - name: Commit Docs
       uses: stefanzweifel/git-auto-commit-action@v5
       with:

@@ -1,4 +1,4 @@
-from cc.udp import UDP
+from udpack import UDP
 
 
 udp = UDP(recv_addr=("0.0.0.0", 8001), send_addr=("127.0.0.1", 8000))
